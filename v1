@@ -1,0 +1,54 @@
+import sys
+menu = """
+[1] Depositar
+[2] Sacar
+[3] Extrato
+[4] Sair
+=> """
+
+menu2= "Para voltar o Menu [1], Sair [2]"
+saldo = 0
+limite = 500
+extrato = ""
+numero_saques = 0
+LIMITE_SAQUES = 3
+user = "Robert"
+#Menu com While
+while True:
+    print("Bem vindo", user)
+    op=int(input(menu))
+#Extrato
+    if op == 1:
+        print("\n================ EXTRATO ================")
+        if extrato == "":
+            print("Você não possui movimentações\n Saldo atual: R$",saldo)
+            print("=====================================")
+        else:print(extrato)
+        print(user, "Seu saldo é:", saldo)
+#Deposito
+    elif op == 2:
+        dep = int(input("Qual o valor do depósito: "))
+        saldo += dep
+        print("Seu saldo atual é de: ", saldo)
+        extrato += "Depósito no valor de: R$:", dep
+        op2 = int(input(menu2))
+        if op2 == 2:
+            sys.exit("Obrigado por usar o India Bank, tmj!")
+#Saque
+    elif op == 3:
+        saque = int(input("Digite o valor do saque: "))
+        if saque > saldo:
+            print("Você não possui saldo suficiente")
+            op2 = int(input(menu2))
+            if op2 == 2:
+                sys.exit("Obrigado por usar o India Bank, tmj!")
+        else: saldo = saldo - saque
+        print("Valor sacado: ", saque, "Saldo Final na conta:", saldo)
+        op2=int(input(menu2))
+        if op2 == 2:
+            sys.exit("Obrigado por usar o India Bank, tmj!" )
+        else: op=4
+    elif op== 4:
+        print('Saindo...')
+    else: sys.exit("selecione uma opção valida.")
+
